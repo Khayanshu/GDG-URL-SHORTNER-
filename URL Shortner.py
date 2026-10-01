@@ -1,5 +1,4 @@
 # Mini URL Shortener
-# Run with: python prac.py
 
 import random
 
@@ -11,7 +10,6 @@ def ensure_file():
     with open(FILE_NAME, "a", encoding="utf-8"):
         pass
 
-
 def read_lines():
     try:
         with open(FILE_NAME, "r", encoding="utf-8") as f:
@@ -19,7 +17,6 @@ def read_lines():
     except FileNotFoundError:
         ensure_file()
         return []
-
 
 def make_code():
     lines = read_lines()
@@ -31,7 +28,6 @@ def make_code():
         used = any(line.split()[0] == code for line in lines if line.strip())
         if not used:
             return code
-
 
 def shorten():
     url = input("Enter URL: ").strip()
@@ -47,7 +43,6 @@ def shorten():
         f.write(code + " " + url + "\n")
     print("Short code:", code)
 
-
 def resolve():
     code = input("Enter short code: ").strip()
     for line in read_lines():
@@ -56,7 +51,6 @@ def resolve():
             print("Original URL:", parts[1])
             return
     print("Code not found.")
-
 
 def show_list():
     lines = read_lines()
@@ -69,8 +63,6 @@ def show_list():
         if parts:
             print(parts[0], "->", parts[1])
 
-
-# ----- main program -----
 ensure_file()
 while True:
     print()
